@@ -36,7 +36,7 @@ function displayFlashcard() {
   const cardFront = document.getElementById('card-front');
   const cardBack = document.getElementById('card-back');
 
-  // Reset flip state before updating content
+  // Always reset the flip state before updating content
   if (isFlipped) {
     document.getElementById('flashcard').classList.remove('flipped');
     isFlipped = false;
@@ -50,15 +50,11 @@ function displayFlashcard() {
 // Flip the card
 function flipCard() {
   const flashcard = document.getElementById('flashcard');
-  if (isFlipped) {
-    flashcard.classList.remove('flipped');
-  } else {
-    flashcard.classList.add('flipped');
-  }
+  flashcard.classList.toggle('flipped');
   isFlipped = !isFlipped;
 }
 
-// Navigate to the previous card
+// Navigate to the previous card and ensure it's unflipped
 function prevCard() {
   if (currentCardIndex > 0) {
     currentCardIndex--;
@@ -66,7 +62,7 @@ function prevCard() {
   }
 }
 
-// Navigate to the next card
+// Navigate to the next card and ensure it's unflipped
 function nextCard() {
   if (currentCardIndex < words.length - 1) {
     currentCardIndex++;
