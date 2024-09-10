@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcard Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Flashcard Quiz</h1>
+
+    <!-- Input for terms and definitions -->
+    <div class="input-section">
+      <label for="words">Words (comma separated):</label>
+      <input type="text" id="words" placeholder="Apple, Banana, Pear">
+
+      <label for="translations">Translations (comma separated):</label>
+      <input type="text" id="translations" placeholder="苹果, 香蕉, 梨">
+
+      <button onclick="generateFlashcards()">Generate Flashcards</button>
+    </div>
+
+    <!-- Flashcard Display -->
+    <div class="flashcard-container" id="flashcard-container" style="display: none;">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="front" id="card-front"></div>
+        <div class="back" id="card-back"></div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation" id="navigation" style="display: none;">
+      <button onclick="prevCard()">Previous</button>
+      <button onclick="nextCard()">Next</button>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
