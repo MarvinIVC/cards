@@ -31,17 +31,20 @@ function generateFlashcards() {
   document.getElementById('navigation').style.display = 'flex';
 }
 
-// Display the current flashcard
+// Display the current flashcard and reset flip state
 function displayFlashcard() {
   const cardFront = document.getElementById('card-front');
   const cardBack = document.getElementById('card-back');
 
+  // Reset flip state before updating content
+  if (isFlipped) {
+    document.getElementById('flashcard').classList.remove('flipped');
+    isFlipped = false;
+  }
+
+  // Update the content for the front and back of the flashcard
   cardFront.textContent = words[currentCardIndex];
   cardBack.textContent = translations[currentCardIndex];
-
-  // Reset flip state
-  isFlipped = false;
-  document.getElementById('flashcard').classList.remove('flipped');
 }
 
 // Flip the card
