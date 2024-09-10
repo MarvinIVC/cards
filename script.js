@@ -36,12 +36,6 @@ function displayFlashcard() {
   const cardFront = document.getElementById('card-front');
   const cardBack = document.getElementById('card-back');
 
-  // Always reset the flip state before updating content
-  if (isFlipped) {
-    document.getElementById('flashcard').classList.remove('flipped');
-    isFlipped = false;
-  }
-
   // Update the content for the front and back of the flashcard
   cardFront.textContent = words[currentCardIndex];
   cardBack.textContent = translations[currentCardIndex];
@@ -54,18 +48,41 @@ function flipCard() {
   isFlipped = !isFlipped;
 }
 
-// Navigate to the previous card and ensure it's unflipped
+// Navigate to the previous card
 function prevCard() {
   if (currentCardIndex > 0) {
-    currentCardIndex--;
-    displayFlashcard();
+    resetFlipAndDisplay(() => {
+      currentCardIndex--;
+      displayFlashcard();
+    });
   }
 }
 
-// Navigate to the next card and ensure it's unflipped
+// Navigate to the next card
 function nextCard() {
   if (currentCardIndex < words.length - 1) {
-    currentCardIndex++;
-    displayFlashcard();
+    resetFlipAndDisplay(() => {
+      currentCardIndex++;
+      displayFlashcard();
+    });
+  }
+}
+
+// Reset the flip state and then update the content
+function resetFlipAndDisplay(callback) {
+  const flashcard = document.getElementById('flashcard');
+  
+  // If the card is flipped, reset it before updating the content
+  if (isFlipped) {
+    flashcard.classList.remove('flipped');
+    isFlipped = false;
+
+    // Delay updating the card content until the card has finished resetting
+    setTimeout(() => {
+      callback();
+    }, 300); // Adjust the delay to match the transition time (300ms in this case)
+  } else {
+    // If the card isn't flipped, just update the content immediately
+    callback();
   }
 }
