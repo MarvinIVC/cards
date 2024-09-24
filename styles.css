@@ -125,3 +125,23 @@ body {
   .navigation button:hover {
     background-color: #f5576c;
   }
+
+.footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.footer-text {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.footer-heart {
+    width: 24px;
+    height: 24px;
+}
